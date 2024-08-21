@@ -124,7 +124,7 @@ bottom: -9px;
         </div>
 
         <div class = "col-right">
-          <form method="post" action="https://wa.me/+6289652969323" class = "contact-form">
+          <form onsubmit="sendEmail(); reset(); retrun false;" class = "contact-form">
             <div class = "form-group">
               <input type = "text" placeholder="your name" required>
               <input type = "email" placeholder="your email" required>
@@ -143,7 +143,21 @@ bottom: -9px;
   src="https://bot.wordgptpro.com/api/script/chat.js?chatbotId=clzz3xvoc000111ggqt0gxfgo&bubble=MessageCircle&messageBanner=Ask%20AI"
   defer>
 </script>
-
+<script>
+  function sendEmail(){
+    Email.send({
+    SecureToken : "6e22846b-7636-4f77-bf39-7ad3e8c8d5c8",
+    To : 'dwibakti76@gmail.com',
+    From : document.getElementById("email").value,
+    Subject : "New Contact Form Enquiry",
+    Body : "Name :" + document.getElementById("name").value + "<br> Email :" + document.getElementById("email").value + document.getElementById("message").value
+}).then(
+  message => alert("Message Send Succesfully")
+);
+  }
+</script>
+    <!--email asset active-->
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
       <!-- footer -->
       <footer class = "footer container">
         <div class = "row">
