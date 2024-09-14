@@ -65,10 +65,10 @@ Periksa penulisan.
 
 <b>
 Selain repositori resmi, ada repositori yang dihosting oleh anggota komunitas.
-  
-<img src="">
+</b>
+<img src="https://media.dev.to/cdn-cgi/image/width=1600,height=900,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fpmxj2byae3zoorsbe2es.jpg">
 
-Anda dapat membuat repositori sendiri dengan menggunakan termux-apt-repo dari baris perintah dan Github Pages sebagai hosting. Perlu diketahui bahwa Github memiliki batasan ketat sebesar 100 MB per file dan jika repositori Anda melebihi ukuran total 1 GB, Anda mungkin menerima email sopan dari GitHub Support yang meminta Anda mengurangi ukuran repositori. Jadi, jika Anda memiliki paket yang sangat besar, Anda mungkin ingin menggunakan hosting yang berbeda. Pilih hosting menurut jenis file, misalnya, video dapat dihosting di https://YouTube.com atau yang serupa.
+<B>Anda dapat membuat repositori sendiri dengan menggunakan termux-apt-repo dari baris perintah dan Github Pages sebagai hosting. Perlu diketahui bahwa Github memiliki batasan ketat sebesar 100 MB per file dan jika repositori Anda melebihi ukuran total 1 GB, Anda mungkin menerima email sopan dari GitHub Support yang meminta Anda mengurangi ukuran repositori. Jadi, jika Anda memiliki paket yang sangat besar, Anda mungkin ingin menggunakan hosting yang berbeda. Pilih hosting menurut jenis file, misalnya, video dapat dihosting di https://YouTube.com atau yang serupa.
 </b>
 
 Anda dapat memilih cermin dengan menggunakan utilitas termux-change-repo.
