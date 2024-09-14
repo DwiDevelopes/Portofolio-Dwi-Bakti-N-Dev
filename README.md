@@ -1,6 +1,9 @@
 # Portofolio-Dwi-Bakti-N-Dev
 Portofolio Dwi Bakti N Dev
-
+<!-- Author -->
+<p align = "center">
+     <h3 align = "center"> 👨‍💻️ Author : <a href = "https://github.com/DwiDevelopes"> Dwi Bakti N Dev </a> </h3>
+</p>
 # Information Portofolio
 <strong><u>information Portofolio</u></strong> 👾
 <br>
