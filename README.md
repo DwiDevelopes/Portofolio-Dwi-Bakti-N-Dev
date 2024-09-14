@@ -8,6 +8,10 @@ Portofolio Dwi Bakti N Dev
 <img src="Git/vitur5.png">
 <img src="Git/vitur6.png">
 
+<p align = "center">
+   <a href="![ClipWindowsGIF (2)](https://github.com/user-attachments/assets/f3e39611-b5f6-41a9-9057-e9c83b6e5f35)">
+</p>
+        
 <!-- Author -->
 <p align = "center">
      <h3 align = "center"> 👨‍💻️ Author : <a href = "https://github.com/DwiDevelopes"> Dwi Bakti N Dev </a> </h3>
