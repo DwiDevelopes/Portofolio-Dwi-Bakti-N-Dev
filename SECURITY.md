@@ -20,6 +20,10 @@ currently being supported with security updates.
 | Service   | :white_check_mark: |
 | Project   | :white_check_mark: |
 | Ransume   | :white_check_mark: |
+| Movie   | :white_check_mark: |
+| Games   | :white_check_mark: |
+| Aplication   | :white_check_mark: |
+
 ## Reporting a Vulnerability
 
 Use this section to tell people how to report a vulnerability.
