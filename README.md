@@ -1,6 +1,13 @@
 # Portofolio-Dwi-Bakti-N-Dev
 Portofolio Dwi Bakti N Dev
 
+<img src="Git/vitur4.png">
+<img src="Git/vitur1.png">
+<img src="Git/vitur2.png">
+<img src="Git/vitur3.png">
+<img src="Git/vitur5.png">
+<img src="Git/vitur6.png">
+
 <!-- Author -->
 <p align = "center">
      <h3 align = "center"> 👨‍💻️ Author : <a href = "https://github.com/DwiDevelopes"> Dwi Bakti N Dev </a> </h3>

@@ -11,7 +11,13 @@ currently being supported with security updates.
 | Blog   | :white_check_mark: |
 | Playfrom   | :white_check_mark: |
 | Contact   | :white_check_mark: |
-
+| AI Assistence   | :white_check_mark: |
+| Download fash   | :white_check_mark: |
+| Terverivikasi   | :white_check_mark: |
+| Home   | :white_check_mark: |
+| About   | :white_check_mark: |
+| Skills   | :white_check_mark: |
+| Service   | :white_check_mark: |
 ## Reporting a Vulnerability
 
 Use this section to tell people how to report a vulnerability.
