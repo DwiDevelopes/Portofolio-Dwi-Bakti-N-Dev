@@ -8,7 +8,9 @@ currently being supported with security updates.
 | Version | Supported          |
 | ------- | ------------------ |
 | 7.1.1   | :white_check_mark: |
-
+| Blog   | :white_check_mark: |
+| Playfrom   | :white_check_mark: |
+| Contact   | :white_check_mark: |
 
 ## Reporting a Vulnerability
 
