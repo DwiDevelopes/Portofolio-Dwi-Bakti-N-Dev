@@ -18,6 +18,8 @@ currently being supported with security updates.
 | About   | :white_check_mark: |
 | Skills   | :white_check_mark: |
 | Service   | :white_check_mark: |
+| Project   | :white_check_mark: |
+| Ransume   | :white_check_mark: |
 ## Reporting a Vulnerability
 
 Use this section to tell people how to report a vulnerability.
