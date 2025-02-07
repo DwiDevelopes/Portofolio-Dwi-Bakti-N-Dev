@@ -100,6 +100,11 @@ const urlsToCache = [
   'game_date/so.png',
   'game_date/sw.png',
   'game_date/sd.png',
+  'Di Lindungi Hak Cipta/a.png',
+  'Di Lindungi Hak Cipta/b.png',
+  'Di Lindungi Hak Cipta/c.png',
+  'Di Lindungi Hak Cipta/d.png',
+  'Di Lindungi Hak Cipta/e.png',
 ];
 
 // Install event: caches the necessary files when the service worker is installed

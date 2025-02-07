@@ -888,3 +888,24 @@ img{
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
+.image-container {
+    display: flex;
+    justify-content: space-between; 
+    gap: 10px; 
+    flex-wrap: wrap; 
+}
+
+.hak-cipta {
+    max-width: 100px; 
+    height: auto; 
+}
+a {
+    text-decoration: none; 
+    color: inherit; 
+}
+
+
+a:visited {
+    color: inherit; 
+}
