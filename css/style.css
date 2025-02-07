@@ -481,28 +481,61 @@ img{
 .blog .item .item-img{
     border-bottom: 8px solid var(--green);
     overflow: hidden;
+    animation: fadeIn 2s ease-in-out;
 }
 .blog .item .item-img img{
     transition: var(--transition);
+    animation: fadeIn 2s ease-in-out;
 }
 .blog .item .item-img:hover img{
     transform: scale(1.2);
+    animation : fadeIn 2s ease-in-out;
 }
-.blog .item .item-content{
+.blog .item .item-content {
     padding: 1.5rem;
+    transition: all 0.3s ease-in-out;
 }
-.blog .item .item-content span{
+
+.blog .item .item-content:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+}
+
+.blog .item .item-content span {
     color: var(--green);
     text-transform: uppercase;
+    transition: color 0.3s ease;
 }
-.blog .item .item-content span .fas{
+
+.blog .item .item-content span:hover {
+    color: var(--dark-green); /* Darker green on hover */
+}
+
+.blog .item .item-content span .fas {
     font-size: 0.85rem;
+    transition: transform 0.3s ease;
 }
-.blog .item .item-content h2{
+
+.blog .item .item-content span .fas:hover {
+    transform: rotate(15deg); /* Slight rotation for icon */
+}
+
+.blog .item .item-content h2 {
     font-family: var(--poppins);
     font-weight: 400;
     font-size: 1.4rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease forwards;
 }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .blog .pagination{
     margin: 3rem 0 0.5rem 0;
     display: flex;
