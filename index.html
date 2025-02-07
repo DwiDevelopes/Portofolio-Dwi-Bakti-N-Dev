@@ -20,8 +20,16 @@
      crossorigin="anonymous"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7894710390444688"
      crossorigin="anonymous"></script>
+     <script src="js/inpect.js"></script>
+     <script src="js/preaload.js"></script>
+     <link rel="stylesheet" href="css/preload.css">
+     <script src = "service-worker.js"></script>
   </head>
   <body>
+    <!-- Preload Section -->
+    <div id="preloader">
+      <div class="loader"></div>
+  </div>
 
     <!-- navbar section -->
     <nav class = "navbar">
@@ -97,7 +105,7 @@
         <div class = "row-right">
           <div class = "img-border">
             <div class = "img-container">
-              <img src = "ROYGAMES.gif" alt = "my photo">
+              <img src = "aplication/ROYGAMES.gif" alt = "my photo">
             </div>
           </div>
         </div>
@@ -107,7 +115,7 @@
 
     <!--kontek saya-->
     <div class="kontek">
-      <a href="contact.html"><img src="contact.png"/></a>
+      <a href="contact.html"><img src="aplication/contact.png"/></a>
       <center><p>Contact Me</p></center>
     </div>
     
@@ -325,7 +333,7 @@ header h2 {
 }
 </style>
     <script>
-      const chatbotToggler = document.querySelector(".chatbot-toggler");
+const chatbotToggler = document.querySelector(".chatbot-toggler");
 const closeBtn = document.querySelector(".close-btn");
 const chatbox = document.querySelector(".chatbox");
 const chatInput = document.querySelector(".chat-input textarea");
@@ -335,7 +343,7 @@ let userMessage = null; // Variable to store user's message
 const inputInitHeight = chatInput.scrollHeight;
 
 // API configuration
-const API_KEY = "AIzaSyBoK__v4jCKDWbSETNMFEZvQOL0gJmtwTQ"; // Your API key here
+const API_KEY = "AIzaSyCC9DImXNPKNo6_b3zGHhjjX_8JTUsjT4U"; // Your API key here
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
 
 const createChatLi = (message, className) => {

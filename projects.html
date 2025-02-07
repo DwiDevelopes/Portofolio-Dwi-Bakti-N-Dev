@@ -15,8 +15,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="js/inpect.js"></script>
+    <script src="js/preaload.js"></script>
+    <link rel="stylesheet" href="css/preload.css">
+    <script src = "service-worker.js"></script>
   </head>
   <body>
+        <!-- Preload Section -->
+        <div id="preloader">
+          <div class="loader"></div>
+      </div>
     
     <!-- navbar section -->
     <nav class = "navbar">
@@ -454,7 +462,7 @@ let userMessage = null; // Variable to store user's message
 const inputInitHeight = chatInput.scrollHeight;
 
 // API configuration
-const API_KEY = "AIzaSyBoK__v4jCKDWbSETNMFEZvQOL0gJmtwTQ"; // Your API key here
+const API_KEY = "AIzaSyCC9DImXNPKNo6_b3zGHhjjX_8JTUsjT4U"; // Your API key here
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
 
 const createChatLi = (message, className) => {
