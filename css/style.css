@@ -746,6 +746,26 @@ img{
         width: 325px;
         height: 325px;
     }
+    .image-container {
+        display: flex;
+        justify-content: space-between; 
+        gap: 10px; 
+        flex-wrap: wrap; 
+    }
+    
+    .hak-cipta {
+        max-width: 100px; 
+        height: auto; 
+    }
+    a {
+        text-decoration: none; 
+        color: inherit; 
+    }
+    
+    
+    a:visited {
+        color: inherit; 
+    }
 }
 
 @media screen and (min-width: 768px){
@@ -816,6 +836,26 @@ img{
     }
     .contact .row > div{
         margin: 0;
+    }
+    .image-container {
+        display: flex;
+        justify-content: space-between; 
+        gap: 10px; 
+        flex-wrap: wrap; 
+    }
+    
+    .hak-cipta {
+        max-width: 100px; 
+        height: auto; 
+    }
+    a {
+        text-decoration: none; 
+        color: inherit; 
+    }
+    
+    
+    a:visited {
+        color: inherit; 
     }
 }
 
@@ -896,6 +936,26 @@ img{
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 2rem;
     }
+    .image-container {
+        display: flex;
+        justify-content: space-between; 
+        gap: 10px; 
+        flex-wrap: wrap; 
+    }
+    
+    .hak-cipta {
+        max-width: 100px; 
+        height: auto; 
+    }
+    a {
+        text-decoration: none; 
+        color: inherit; 
+    }
+    
+    
+    a:visited {
+        color: inherit; 
+    }
 }
 
 @media screen and (min-width: 1200px){
@@ -920,6 +980,26 @@ img{
     .blog .row{
         grid-template-columns: repeat(3, 1fr);
     }
+    .image-container {
+        display: flex;
+        justify-content: space-between; 
+        gap: 10px; 
+        flex-wrap: wrap; 
+    }
+    
+    .hak-cipta {
+        max-width: 100px; 
+        height: auto; 
+    }
+    a {
+        text-decoration: none; 
+        color: inherit; 
+    }
+    
+    
+    a:visited {
+        color: inherit; 
+    }
 }
 
 .image-container {
@@ -942,3 +1022,26 @@ a {
 a:visited {
     color: inherit; 
 }
+@keyframes clickEffect{
+    0%{
+    opacity:1;
+    width:0.5em; height:0.5em;
+    margin:-0.25em;
+    border-width:0.5em;
+    }
+    100%{
+    opacity:0.2;
+    width:15em; height:15em;
+    margin:-7.5em;
+    border-width:0.03em;
+    }
+}
+div.clickEffect{
+    position:fixed;
+    box-sizing:border-box;
+    border-style:solid;
+    border-color:#FFFFFF;
+    border-radius:50%;
+    animation:clickEffect 0.4s ease-out;
+    z-index:99999;
+    }
