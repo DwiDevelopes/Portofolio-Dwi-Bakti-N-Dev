@@ -848,15 +848,19 @@ img{
         max-width: 100px; 
         height: auto; 
     }
-    a {
-        text-decoration: none; 
-        color: inherit; 
-    }
-    
-    
-    a:visited {
-        color: inherit; 
-    }
+        a:focus, a:active {
+            outline: none; 
+            text-decoration: none;
+            color: inherit;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
 }
 
 @media screen and (min-width: 992px){
@@ -947,15 +951,19 @@ img{
         max-width: 100px; 
         height: auto; 
     }
-    a {
-        text-decoration: none; 
-        color: inherit; 
-    }
-    
-    
-    a:visited {
-        color: inherit; 
-    }
+        a:focus, a:active {
+            outline: none; 
+            text-decoration: none; 
+            color: inherit; 
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
 }
 
 @media screen and (min-width: 1200px){
@@ -991,15 +999,20 @@ img{
         max-width: 100px; 
         height: auto; 
     }
-    a {
-        text-decoration: none; 
-        color: inherit; 
-    }
-    
-    
-    a:visited {
-        color: inherit; 
-    }
+
+        a:focus, a:active {
+            outline: none; 
+            text-decoration: none;
+            color: inherit; 
+        }
+
+        a {
+            text-decoration: none; 
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
 }
 
 .image-container {
@@ -1013,15 +1026,19 @@ img{
     max-width: 100px; 
     height: auto; 
 }
-a {
-    text-decoration: none; 
-    color: inherit; 
-}
+        a:focus, a:active {
+            outline: none; 
+            text-decoration: none; 
+            color: inherit; 
+        }
 
+        a {
+            text-decoration: none; 
+        }
 
-a:visited {
-    color: inherit; 
-}
+        a:hover {
+            text-decoration: underline;
+        }
 @keyframes clickEffect{
     0%{
     opacity:1;

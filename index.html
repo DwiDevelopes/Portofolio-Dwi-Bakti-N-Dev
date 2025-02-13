@@ -24,6 +24,7 @@
      <script src="js/preaload.js"></script>
      <link rel="stylesheet" href="css/preload.css">
      <script src = "service-worker.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   </head>
   <body>
     <!-- Preload Section -->
@@ -88,14 +89,21 @@
     <!-- end of navbar section -->
 
 
-
     <!-- home page -->
     <section class = "home container">
       <div class = "row">
         <div class = "row-left">
           <h3>hello guys !</h3>
           <h1>i'm <span>Dwi Bakti N</span></h1>
-          <h2>a freelance Canva designer Profesional</h2>
+          <h2>I'm a <span class="auto-type"></span> </h2>
+          <script>
+            var typed = new Typed(".auto-type",{
+              strings : ["Profesional", "Designer Pro", "Design Graphic Pro", "Web Design", "Canva Pro", "Game Design","UI", "Development", "Game Development", "Story Taller", "Gamer", "Multifungsi ✔️"],
+              typeSpeed : 150,
+              backSpeed : 150,
+              loop : true
+            })
+          </script>
           <div class = "home-pg-btn">
             <a href="https://drive.google.com/drive/folders/124-gw8k2M9n3aL_sURyR7g7aXUu2A3hw?usp=drive_link"><button type = "button" class = "btn">Download Cv</button></a>
             <a href="playfrom.html"><button type = "button" class = "btn">my playfrom</button></a>
