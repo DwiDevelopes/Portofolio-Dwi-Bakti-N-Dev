@@ -129,19 +129,82 @@ bottom: -9px;
             </a>
           </div>
         </div>
-
-        <div class = "col-right">
-          <form action="https://script.google.com/macros/s/AKfycbzpRD196JPv86OUrAI1_oIwA6ZZ2id7mOSBEWJeF2jlLj_lcdfIMxqd9lOzt4glsIuyWw/exec" method = "POST" class = "contact-form" id = "contactForm">
-            <div class = "form-group">
-              <input type = "text" name = "name" placeholder="your name" required>
-              <input type = "email" name = "email" placeholder="your email" required>
-              <input type = "text" name= "subject" placeholder="your subject" required>
+        
+          <form action="https://script.google.com/macros/s/AKfycbzpRD196JPv86OUrAI1_oIwA6ZZ2id7mOSBEWJeF2jlLj_lcdfIMxqd9lOzt4glsIuyWw/exec" method="POST" class="contact-form" id="contactForm">
+            <div class="form-group">
+              <input type="text" name="name" placeholder="your name" required>
+              <input type="email" name="email" placeholder="your email" required>
+              <input type="text" name="subject" placeholder="your subject" required>
             </div>
-            <textarea name = "message" rows = "5" placeholder="your message" required></textarea>
-            <button type = "submit" class = "btn">send message</button>
+            <textarea name="message" rows="5" placeholder="your message" required></textarea>
+            <button type="submit" class="btn">send message</button>
           </form>
         </div>
-      </div>
+        
+<!-- Success Popup -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Styles for logo -->
+<style>
+  .logo img {
+    display: block;
+    margin: 0 auto 20px;
+  }
+</style>
+
+<!-- JavaScript for SweetAlert2 Popup -->
+<script>
+  var music = new Audio("sound_click/suksess.mp3");
+  var error = new Audio("sound_click/error.mp3");
+  // Show SweetAlert2 after successful form submission
+  document.getElementById("contactForm").onsubmit = function(event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+    var formData = new FormData(event.target);
+  
+    fetch(event.target.action, {
+      method: event.target.method,
+      body: formData,
+    })
+    .then(response => response.json())
+    .then(() => {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      music.play();
+      Toast.fire({
+        icon: "success",
+        title: "Successfully Send Message"
+      });
+    })
+    .catch((error) => {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      error.play();
+      Toast.fire({
+        icon: "error",
+        title: "Error Sending Message"
+      });
+    });
+  };
+</script>
+   
     </section>
     <!-- end of contact page -->
     
