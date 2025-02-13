@@ -1,0 +1,2 @@
+kalian juga bisa menggunakan data ini untuk backend nya dan memudahkan pekerjaan kalian
+https://script.google.com/macros/s/AKfycbzpRD196JPv86OUrAI1_oIwA6ZZ2id7mOSBEWJeF2jlLj_lcdfIMxqd9lOzt4glsIuyWw/exec

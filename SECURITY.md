@@ -39,6 +39,10 @@ currently being supported with security updates.
 | Compile APK   | :white_check_mark: |
 | Compile exe   | :white_check_mark: |
 | Service Worker   | :white_check_mark: |
+| Email Unlock   | :white_check_mark: |
+| Data Email Unlock All   | :white_check_mark: |
+| Php Unlock   | :white_check_mark: |
+| Server Unlock   | :white_check_mark: |
 
 ## Reporting a Vulnerability
 
