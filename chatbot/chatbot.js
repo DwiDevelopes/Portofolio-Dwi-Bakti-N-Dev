@@ -28,6 +28,10 @@ window.speechSynthesis.onvoiceschanged = () => {
   console.log("Voices loaded:", window.speechSynthesis.getVoices());
 };
 
+const isMobileDevice = () => {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+};
+
 const speakResponse = (message, lang) => {
   const synth = window.speechSynthesis;
 
@@ -44,21 +48,29 @@ const speakResponse = (message, lang) => {
   const utterance = new SpeechSynthesisUtterance(message);
   utterance.lang = lang;
 
-  // Set voice based on language
+  // Set voice based on device type
   const voices = synth.getVoices();
-  let voice = voices.find(voice => voice.lang === lang && voice.name.includes("Japanese")); // Change "Japanese" to the name of your preferred voice
+  let voice = null;
+
+  if (isMobileDevice()) {
+    // Use male voice for mobile devices
+    voice = voices.find(voice => voice.lang === lang && voice.name.includes("Male"));
+  } else {
+    // Use female voice for PC
+    voice = voices.find(voice => voice.lang === lang && voice.name.includes("Female"));
+  }
+
   if (voice) {
     utterance.voice = voice;
   }
 
   // Adjust pitch and rate to match the desired voice characteristics
-  utterance.pitch = 1.2; // Adjust pitch
-  utterance.rate = 1.1;  // Adjust speed
+  utterance.pitch = isMobileDevice() ? 1.0 : 1.2; // Lower pitch for male voice
+  utterance.rate = isMobileDevice() ? 1.0 : 1.1;  // Normal speed for male voice
 
   // Speak the message
   synth.speak(utterance);
 }
-
 
 const generateResponse = async (chatElement) => {
   const messageElement = chatElement.querySelector("p");
@@ -116,6 +128,7 @@ const handleChat = () => {
     chatbox.scrollTo(0, chatbox.scrollHeight);
     generateResponse(incomingChatLi);
   }, 600);
+}
 
 chatInput.addEventListener("input", () => {
   // Adjust the height of the input textarea based on its content
@@ -131,7 +144,48 @@ chatInput.addEventListener("keydown", (e) => {
     handleChat();
   }
 });
-}
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Cek state chatbot dari localStorage
+  if (localStorage.getItem('chatbotState') === 'open') {
+    document.body.classList.add('show-chatbot');
+  } else {
+    document.body.classList.remove('show-chatbot');
+  }
+
+  // Simpan state chatbot ke localStorage saat toggler diklik
+  document.querySelector('.chatbot-toggler').addEventListener('click', function() {
+    if (document.body.classList.contains('show-chatbot')) {
+      localStorage.setItem('chatbotState', 'open');
+    } else {
+      localStorage.setItem('chatbotState', 'closed');
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Reset state chatbot saat halaman dimuat
+  document.body.classList.remove('show-chatbot');
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Hapus class no-animation setelah halaman dimuat
+  setTimeout(function() {
+    document.body.classList.remove('no-animation');
+  }, 100);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Tampilkan chatbot setelah halaman dimuat
+  setTimeout(function() {
+    document.querySelector('.chatbot').style.display = 'block';
+  }, 100);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Reset transform saat halaman dimuat
+  document.querySelector('.chatbot').style.transform = 'scale(0.5)';
+});
 
 sendChatBtn.addEventListener("click", handleChat);
 closeBtn.addEventListener("click", () => document.body.classList.remove("show-chatbot"));

@@ -185,8 +185,6 @@ header h2 {
   opacity: 1; /* No animation for errors */
 }
 
-
-
 @media (max-width: 490px) {
   .chatbot-toggler {
     right: 20px;
@@ -232,15 +230,40 @@ header h2 {
     transform: scale(0.5);
   }
 }
-
+/* Tambahkan class ini ke CSS */
+.no-animation {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+/* Sembunyikan chatbot saat halaman dimuat */
 .chatbot {
-  animation: fadeIn 0.3s ease-out;
+  display: none;
+}
+
+/* Tampilkan chatbot setelah halaman dimuat */
+body.show-chatbot .chatbot {
+  display: block;
+}
+.chatbot {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
 body.show-chatbot .chatbot {
-  animation: fadeIn 0.3s ease-out;
+  visibility: visible;
+  opacity: 1;
+}
+.chatbot {
+  will-change: transform, opacity;
+}
+.chatbot {
+  transform: scale(0.5);
+  transform-origin: bottom right;
+  transition: transform 0.2s ease;
 }
 
-body:not(.show-chatbot) .chatbot {
-  animation: fadeOut 0.3s ease-out;
+body.show-chatbot .chatbot {
+  transform: scale(1);
 }
