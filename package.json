@@ -2,7 +2,7 @@
   "name": "portofolio-dwi-bakti",
   "version": "1.0.0",
   "description": "https://linkr.bio/BangRoy.com",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node index.js",
     "test": "mocha test/app.test.js"

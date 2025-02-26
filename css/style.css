@@ -380,66 +380,6 @@ img{
     width: 100%;
     position: relative;
 }
-.projects .row .item:nth-child(1){
-    background: url(../dwi_images_project/p1.jpg) center/cover no-repeat;
-}
-.projects .row .item:nth-child(2){
-    background: url(../dwi_images_project/p2.jpg) center/cover no-repeat;
-}
-.projects .row .item:nth-child(3){
-    background: url(../dwi_images_project/p3.jpg) center/cover no-repeat;
-}
-.projects .row .item:nth-child(4){
-    background: url(../dwi_images_project/p4.jpg) center/cover no-repeat;
-}
-.projects .row .item:nth-child(5){
-    background: url(../dwi_images_project/p5.jpg) center/cover no-repeat;
-}
-.projects .row .item:nth-child(6){
-    background: url(../dwi_images_project/p6.jpg) center/cover no-repeat;
-}
-.projects .row .item:nth-child(7){
-    background: url(../dwi_images_project/p7.jpg) center/cover no-repeat;
-}
-.projects .row .item:nth-child(8){
-    background: url(../dwi_images_project/p8.jpg) center/cover no-repeat;
-}
-.projects .row .item:nth-child(9){
-    background: url(../dwi_images_project/p9.jpg) center/cover no-repeat;
-}
-.projects .row .item:nth-child(10){
-    background: url(../dwi_images_project/p10.jpg) center/cover no-repeat;
-}
-.projects .row .item:nth-child(11){
-    background: url(../dwi_images_project/p11.jpg) center/cover no-repeat;
-}
-.projects .row .item:nth-child(12){
-    background: url(../dwi_images_project/p12.jpg) center/cover no-repeat;
-}
-.projects .row .item:nth-child(13){
-    background: url(../dwi_images_project/p13.jpg) center/cover no-repeat;
-}
-.projects .row .item:nth-child(14){
-    background: url(../dwi_images_project/p14.jpg) center/cover no-repeat;
-}
-.projects .row .item:nth-child(15){
-    background: url(../dwi_images_project/p15.jpg) center/cover no-repeat;
-}
-.projects .row .item:nth-child(16){
-    background: url(../dwi_images_project/p16.jpg) center/cover no-repeat;
-}
-.projects .row .item:nth-child(17){
-    background: url(../dwi_images_project/p17.jpg) center/cover no-repeat;
-}
-.projects .row .item:nth-child(18){
-    background: url(../dwi_images_project/p18.jpg) center/cover no-repeat;
-}
-.projects .row .item:nth-child(19){
-    background: url(../dwi_images_project/p19.jpg) center/cover no-repeat;
-}
-.projects .row .item:nth-child(20){
-    background: url(../dwi_images_project/p20.jpg) center/cover no-repeat;
-}
 .projects .item .item-overlay{
     position: absolute;
     top: 0;
@@ -764,15 +704,6 @@ img{
         max-width: 100px; 
         height: auto; 
     }
-    a {
-        text-decoration: none; 
-        color: inherit; 
-    }
-    
-    
-    a:visited {
-        color: inherit; 
-    }
 }
 
 @media screen and (min-width: 768px){
@@ -855,19 +786,6 @@ img{
         max-width: 100px; 
         height: auto; 
     }
-        a:focus, a:active {
-            outline: none; 
-            text-decoration: none;
-            color: inherit;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
 }
 
 @media screen and (min-width: 992px){
@@ -958,19 +876,6 @@ img{
         max-width: 100px; 
         height: auto; 
     }
-        a:focus, a:active {
-            outline: none; 
-            text-decoration: none; 
-            color: inherit; 
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
 }
 
 @media screen and (min-width: 1200px){
@@ -1006,20 +911,6 @@ img{
         max-width: 100px; 
         height: auto; 
     }
-
-        a:focus, a:active {
-            outline: none; 
-            text-decoration: none;
-            color: inherit; 
-        }
-
-        a {
-            text-decoration: none; 
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
 }
 
 .image-container {
@@ -1033,19 +924,6 @@ img{
     max-width: 100px; 
     height: auto; 
 }
-        a:focus, a:active {
-            outline: none; 
-            text-decoration: none; 
-            color: inherit; 
-        }
-
-        a {
-            text-decoration: none; 
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
 @keyframes clickEffect{
     0%{
     opacity:1;
