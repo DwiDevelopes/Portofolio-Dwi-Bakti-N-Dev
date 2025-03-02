@@ -1,4 +1,5 @@
 /* #### navbar #### */
+@import 'animate.css';
 .navbar{
     position: fixed;
     z-index: 999;
@@ -7,6 +8,11 @@
     background: var(--nero);
     width: 100%;
 }
+.verivikasi{
+    position: relative;
+    left: -22%;
+    bottom: -9px;
+  }
 .brand-and-toggler{
     display: flex;
     justify-content: space-between;
