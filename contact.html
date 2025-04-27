@@ -125,16 +125,73 @@
           </div>
         </div>
         
-          <form action="https://script.google.com/macros/s/AKfycbzpRD196JPv86OUrAI1_oIwA6ZZ2id7mOSBEWJeF2jlLj_lcdfIMxqd9lOzt4glsIuyWw/exec" method="POST" class="contact-form" id="contactForm">
-            <div class="form-group">
-              <input type="text" name="name" placeholder="your name" required>
-              <input type="email" name="email" placeholder="your email" required>
-              <input type="text" name="subject" placeholder="your subject" required>
-            </div>
-            <textarea name="message" rows="5" placeholder="your message" required></textarea>
-            <button type="submit" class="btn">send message</button>
-          </form>
-        </div>
+        <form action="https://script.google.com/macros/s/AKfycbzpRD196JPv86OUrAI1_oIwA6ZZ2id7mOSBEWJeF2jlLj_lcdfIMxqd9lOzt4glsIuyWw/exec" method="POST" class="contact-form" id="contactForm">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="your name" required>
+            <input type="email" name="email" placeholder="your email" required>
+            <input type="text" name="subject" placeholder="your subject" required>
+          </div>
+          <textarea name="message" rows="5" placeholder="your message" required></textarea>
+          
+          <!-- Tambahkan reCAPTCHA di sini -->
+          <div class="g-recaptcha" data-sitekey="6LcHEiYrAAAAAMop0HIDJbv64d49XFrPmGscN9C6" data-callback="enableSubmit"></div>
+          
+          <button type="submit" class="btn" id="submitButton" disabled>send message</button>
+        </form>
+        
+        <!-- Load reCAPTCHA script -->
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        
+        <script>
+          function enableSubmit() {
+            document.getElementById("submitButton").disabled = false;
+          }
+
+
+          function doPost(e) {
+            var params = e.parameters;
+            var recaptchaResponse = params['g-recaptcha-response'];
+            
+            // Verifikasi reCAPTCHA
+            var url = 'https://www.google.com/recaptcha/api/siteverify';
+            var payload = {
+              'secret': '6LcHEiYrAAAAAF8AuLkuONwSFrTLZpUmzZLzldib',
+              'response': recaptchaResponse
+            };
+            
+            var options = {
+              'method': 'post',
+              'payload': payload
+            };
+            
+            var response = UrlFetchApp.fetch(url, options);
+            var result = JSON.parse(response.getContentText());
+            
+            if (!result.success) {
+              return ContentService.createTextOutput(JSON.stringify({
+                'status': 'error',
+                'message': 'reCAPTCHA verification failed'
+              })).setMimeType(ContentService.MimeType.JSON);
+            }
+            
+            // Lanjutkan dengan pemrosesan form jika reCAPTCHA valid
+            // ... kode pemrosesan form Anda yang ada ...
+          }
+        </script>
+        <style>
+          .g-recaptcha {
+            margin: 15px 0;
+            display: flex;
+            justify-content: left;
+            border-radius: 20px;
+          }
+          
+          #submitButton:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+          }
+
+        </style>
         
 <!-- Success Popup -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
