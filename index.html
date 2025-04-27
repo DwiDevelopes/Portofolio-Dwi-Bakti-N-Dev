@@ -107,7 +107,108 @@
             <a href="playfrom.html" class="animate__animated animate__bounceInUp"><button type = "button" class = "btn">my playfrom</button></a>
           </div>
           <a href="contact.html" class = "animate__animated animate__bounceInDown"><button type = "button" class = "btn" style="color:white; background :none; border : solid 1px #0F4C81;">Contact Dwi Bakti N</button></a>
+          <a href="contact.html" class="animate__animated animate__bounceInDown" onclick="showPopup()">
+            <button type="button" class="btn" style="color:white; background:none; border:solid 1px #0F4C81;">
+              Idola Saya
+            </button>
+          </a>
         </div>
+
+
+
+        <!-- Popup HTML -->
+        <div id="contactPopup" class="popup-container" style="display:none;">
+          <div class="popup-content">
+            <span class="close-btn" onclick="hidePopup()">&times;</span>
+            <img src="idola/idola.jpeg" alt="Contact Dwi Bakti N" class="popup-image">
+            <div class="popup-text">
+              <h3 class ="text-black" style = "color:black;">Contact Dwi Bakti N</h3>
+              <p class="text-black" style = "color:black;">Silahkan hubungi saya melalui halaman kontak berikut. Saya akan dengan senang hati menjawab pertanyaan Anda.</p>
+            </div>
+            <a href="contact.html" class="popup-button">Lanjut ke Kontak</a>
+          </div>
+        </div>
+
+        <style>
+          /* Popup Styles */
+          .popup-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+          }
+          
+          .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+          }
+          
+          .popup-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 15px;
+          }
+          
+          .popup-text {
+            margin-bottom: 20px;
+          }
+          
+          .popup-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0F4C81;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+          }
+          
+          .popup-button:hover {
+            background-color: #0d3a66;
+          }
+          
+          .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+          }
+        </style>
+
+        <script>
+          function showPopup() {
+            event.preventDefault(); // Mencegah navigasi langsung ke contact.html
+            document.getElementById('contactPopup').style.display = 'flex';
+          }
+          
+          function hidePopup() {
+            document.getElementById('contactPopup').style.display = 'none';
+          }
+          
+          // Tutup popup ketika klik di luar area konten
+          window.onclick = function(event) {
+            const popup = document.getElementById('contactPopup');
+            if (event.target == popup) {
+              hidePopup();
+            }
+          }
+        </script>
+
+
 
         <div class = "row-right">
           <div class = "img-border">
