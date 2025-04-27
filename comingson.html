@@ -130,31 +130,451 @@
           </div>
         </div>
 
-        <div class = "col">
-          <h3 class = "footer-title">more</h3>
-          <div class = "footer-links">
-            <a href = "#" class = "text">
-              <i class = "fas fa-long-arrow-alt-right"></i>
+        <div class="col">
+          <h3 class="footer-title">more</h3>
+          <div class="footer-links">
+            <a href="#" class="text" onclick="showServicePopup(0)">
+              <i class="fas fa-long-arrow-alt-right"></i>
               Design Canva Profesional
             </a>
-            <a href = "#" class = "text">
-              <i class = "fas fa-long-arrow-alt-right"></i>
+            <a href="#" class="text" onclick="showServicePopup(1)">
+              <i class="fas fa-long-arrow-alt-right"></i>
               Website Development
             </a>
-            <a href = "#" class = "text">
-              <i class = "fas fa-long-arrow-alt-right"></i>
+            <a href="#" class="text" onclick="showServicePopup(2)">
+              <i class="fas fa-long-arrow-alt-right"></i>
               business strategy
             </a>
-            <a href = "#" class = "text">
-              <i class = "fas fa-long-arrow-alt-right"></i>
+            <a href="#" class="text" onclick="showServicePopup(3)">
+              <i class="fas fa-long-arrow-alt-right"></i>
               Game Development
             </a>
-            <a href = "#" class = "text">
-              <i class = "fas fa-long-arrow-alt-right"></i>
+            <a href="#" class="text" onclick="showServicePopup(4)">
+              <i class="fas fa-long-arrow-alt-right"></i>
               graphics design
             </a>
           </div>
         </div>
+        
+        <!-- Service Popup Modal -->
+        <div id="serviceModal" class="modal">
+          <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            
+            <div class="service-slider-container">
+              <div class="slider-wrapper">
+                <div id="serviceSlider" class="service-slider"></div>
+              </div>
+              <button class="slider-nav prev" onclick="changeSlide(-1)">❮</button>
+              <button class="slider-nav next" onclick="changeSlide(1)">❯</button>
+              <div class="slider-dots"></div>
+            </div>
+            
+            <div class="service-details">
+              <h2 id="modalTitle">Service Title</h2>
+              <div id="modalDescription" class="service-description text-black"></div>
+              <div class="service-features text-black" id="serviceFeatures"></div>
+              <a href ="https://profile-dwi-bakti-n-dev.vercel.app/"><button class="cta-button">Get This Service</button></a>
+            </div>
+          </div>
+        </div>
+        
+        <style>
+          /* Modal Styles */
+          .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+          }
+          
+          .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 85%;
+            max-width: 900px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+            transform: translateY(-50px);
+            transition: transform 0.3s ease;
+            position: relative;
+            display: flex;
+            overflow: hidden;
+          }
+          
+          .modal.show {
+            opacity: 1;
+          }
+          
+          .modal.show .modal-content {
+            transform: translateY(0);
+          }
+          
+          .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.2s;
+            z-index: 10;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+          }
+          
+          .close-btn:hover {
+            color: #ddd;
+          }
+          
+          /* Slider Styles */
+          .service-slider-container {
+            width: 50%;
+            position: relative;
+            background: #000;
+          }
+          
+          .slider-wrapper {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+          }
+          
+          .service-slider {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+          }
+          
+          .service-slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            flex-shrink: 0;
+          }
+          
+          .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.3);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+          }
+          
+          .slider-nav:hover {
+            background: rgba(255,255,255,0.7);
+            color: #333;
+          }
+          
+          .prev {
+            left: 15px;
+          }
+          
+          .next {
+            right: 15px;
+          }
+          
+          .slider-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            z-index: 10;
+          }
+          
+          .slider-dots .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+          }
+          
+          .slider-dots .dot.active {
+            background: white;
+            transform: scale(1.2);
+          }
+          
+          /* Service Details Styles */
+          .service-details {
+            width: 50%;
+            padding: 40px;
+            overflow-y: auto;
+            max-height: 600px;
+          }
+          
+          #modalTitle {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 28px;
+          }
+          
+          .service-description {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-size: 16px;
+          }
+          
+          .service-features {
+            margin-bottom: 30px;
+          }
+          
+          .service-features li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+          }
+          
+          .service-features li:before {
+            content: "✓";
+            color: #27ae60;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+          }
+          
+          .cta-button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+            width: 100%;
+          }
+          
+          .cta-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+          }
+          
+          @media (max-width: 768px) {
+            .modal-content {
+              flex-direction: column;
+              width: 90%;
+              max-height: 90vh;
+            }
+            
+            .service-slider-container, .service-details {
+              width: 100%;
+            }
+            
+            .service-slider-container {
+              height: 250px;
+            }
+            
+            .service-details {
+              max-height: calc(90vh - 250px);
+            }
+          }
+          /* Tambahkan ini ke CSS Anda */
+          .modal-content {
+            color: #000000 !important; /* Warna hitam untuk semua teks dalam modal */
+          }
+
+          #modalTitle, #modalDescription, .service-features li {
+            color: #000000 !important;
+          }
+
+          .service-description, .service-features {
+            color: #000000 !important;
+          }
+
+          .cta-button {
+            color: #ffffff !important; /* Biarkan teks tombol tetap putih */
+          }
+        </style>
+        
+        <script>
+          // Service data
+          const services = [
+          {
+            title: "Professional Canva Design",
+            description: "Professional design services using Canva for all your business needs. We provide creative and eye-catching design solutions for social media, presentations, brochures, and other marketing materials.",
+            features: [
+              "Social media designs (Facebook, Tiktok, Instagram)",
+              "Professional presentation templates",
+              "Digital brochures and flyers",
+              "Profile banners and headers",
+              "Simple logos and branding"
+            ],
+            images: [
+              "https://static-cse.canva.com/blob/1788055/mockups.png",
+              "https://static-cse.canva.com/blob/1550261/BeatSync.png",
+              "https://static-cse.canva.com/blob/1550246/Enhancevoice.png"
+            ]
+          },
+          {
+            title: "Website Development",
+            description: "Modern and responsive website development using the latest technologies. We build fast, secure, and SEO-friendly websites to help your business grow in the digital world.",
+            features: [
+              "Company/profile websites",
+              "E-commerce/online store websites",
+              "High-conversion landing pages",
+              "Speed and SEO optimization",
+              "Payment system integration"
+            ],
+            images: [
+              "https://negliadesign.com/wordpress/assets/Website-Development-feature3.001.jpg",
+              "https://gogo.co.id/wp-content/uploads/2021/12/Ketahui-Perbedaan-Website-Development-VS-Website-Design.jpg",
+              "https://digital.jpnn.com/wp-content/uploads/2024/09/understanding-web-design-tips-and-tricks-for-2024_c27d88c.jpg"
+            ]
+          },
+          {
+            title: "Business Strategy",
+            description: "We help you formulate effective and sustainable business strategies. With our data-driven approach, we'll assist you in achieving your business goals.",
+            features: [
+              "Market and competitor analysis",
+              "Long-term business planning",
+              "Digital marketing strategies",
+              "Product and service development",
+              "Business consultation"
+            ],
+            images: [
+              "https://io.binus.ac.id/files/2020/05/unnamed.jpg",
+              "https://consulterce.com/wp-content/uploads/2021/06/business-strategy-article-cover.jpg",
+              "https://media.licdn.com/dms/image/v2/C5612AQHJJeMhf9yNqg/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1652166614735?e=2147483647&v=beta&t=0Lito51qbrgdDgXIovMxz18XDAXawl7zj3CefAQrtUA"
+            ]
+          },
+          {
+            title: "Game Development",
+            description: "High-quality game development for various platforms. We create engaging and innovative gaming experiences.",
+            features: [
+              "Mobile games (Android/iOS)",
+              "PC and console games",
+              "Character and environment design",
+              "Web-based game development",
+              "Payment system integration"
+            ],
+            images: [
+              "https://miro.medium.com/v2/resize:fit:1400/1*3gh-krzOrAoNyX8mJGyc2Q.jpeg",
+              "https://miro.medium.com/v2/resize:fit:1024/1*QWGmkjmdO3UqB3ynYc4uuA.jpeg",
+              "https://media.geeksforgeeks.org/wp-content/cdn-uploads/20191206194406/Tips-For-an-Indie-Game-Developer.png"
+            ]
+          },
+          {
+            title: "Graphic Design",
+            description: "Attractive and engaging graphic designs for various platforms. We create visually appealing and innovative designs.",
+            features: [
+              "Logo and branding design",
+              "Character and environment design",
+              "Animation and 3D animation design",
+              "Graphic designs for social media",
+              "Payment system integration"
+            ],
+            images: [
+              "https://blog-frontend.envato.com/cdn-cgi/image/width=1200,quality=75,format=auto,fit=crop,height=630/uploads/sites/2/2023/02/Tuts_Roundup__Top_Graphic_Design_Courses.jpeg",
+              "https://amadine.com/assets/img/articles/graphic-design/poster.jpg",
+              "https://cdn.logojoy.com/wp-content/uploads/20240531102158/05-23-24_Graphic-Design-Styles-Collages_BRUTALISM-600x349.jpg"
+            ]
+          }
+        ];
+        
+          let currentServiceIndex = 0;
+          let currentSlideIndex = 0;
+        
+          function showServicePopup(index) {
+            currentServiceIndex = index;
+            currentSlideIndex = 0;
+            const service = services[index];
+            
+            // Set service details
+            document.getElementById('modalTitle').textContent = service.title;
+            document.getElementById('modalDescription').textContent = service.description;
+            
+            // Set features
+            const featuresContainer = document.getElementById('serviceFeatures');
+            featuresContainer.innerHTML = service.features.map(feature => 
+              `<li>${feature}</li>`
+            ).join('');
+            
+            // Build slider
+            const slider = document.getElementById('serviceSlider');
+            slider.innerHTML = service.images.map(img => 
+              `<img src="${img}" alt="${service.title}">`
+            ).join('');
+            slider.style.transform = `translateX(0)`;
+            
+            // Build dots
+            const dotsContainer = document.querySelector('.slider-dots');
+            dotsContainer.innerHTML = service.images.map((_, i) => 
+              `<span class="dot ${i === 0 ? 'active' : ''}" onclick="goToSlide(${i})"></span>`
+            ).join('');
+            
+            // Show modal
+            const modal = document.getElementById('serviceModal');
+            modal.classList.add('show');
+            setTimeout(() => {
+              modal.style.display = 'block';
+            }, 10);
+          }
+          
+          function closeModal() {
+            const modal = document.getElementById('serviceModal');
+            modal.classList.remove('show');
+            setTimeout(() => {
+              modal.style.display = 'none';
+            }, 300);
+          }
+          
+          function changeSlide(direction) {
+            const service = services[currentServiceIndex];
+            const totalSlides = service.images.length;
+            currentSlideIndex = (currentSlideIndex + direction + totalSlides) % totalSlides;
+            
+            const slider = document.getElementById('serviceSlider');
+            slider.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+            
+            // Update dots
+            document.querySelectorAll('.slider-dots .dot').forEach((dot, i) => {
+              dot.classList.toggle('active', i === currentSlideIndex);
+            });
+          }
+          
+          function goToSlide(index) {
+            currentSlideIndex = index;
+            const slider = document.getElementById('serviceSlider');
+            slider.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+            
+            // Update dots
+            document.querySelectorAll('.slider-dots .dot').forEach((dot, i) => {
+              dot.classList.toggle('active', i === currentSlideIndex);
+            });
+          }
+          
+          // Close modal when clicking outside content
+          window.onclick = function(event) {
+            const modal = document.getElementById('serviceModal');
+            if (event.target == modal) {
+              closeModal();
+            }
+          }
+        </script>
 
         <div class = "col">
           <h3 class = "footer-title">have a question?</h3>
