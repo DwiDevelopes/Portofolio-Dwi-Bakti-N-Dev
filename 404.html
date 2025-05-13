@@ -29,6 +29,857 @@
         <div id="preloader">
           <div class="loader"></div>
       </div>
+
+                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+      :root {
+        --primary-color: black;
+        --primary-dark: #048a6f;
+        --background-color: #ffffff;
+        --text-color: #202124;
+        --border-color: #dadce0;
+        --search-bg: #f1f3f4;
+        --card-shadow: rgba(0, 0, 0, 0.1);
+        --error-color: #EA4335;
+      }
+
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Inter', sans-serif;
+      }
+
+      body {
+          position: relative;
+      }
+
+      #media-search-container {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          width: 380px;
+          height: 580px;
+          background-color: var(--background-color);
+          border-radius: 12px;
+          box-shadow: 0 4px 12px var(--card-shadow);
+          display: flex;
+          flex-direction: column;
+          z-index: 999999;
+          border: 1px solid var(--border-color);
+          transform: translateY(0);
+          transition: transform 0.3s ease, opacity 0.3s ease;
+          overflow: hidden;
+      }
+
+      #media-search-container.minimized {
+          transform: translateY(calc(100% - 40px));
+          opacity: 0.9;
+      }
+
+      #media-search-header {
+          padding: 12px 16px;
+          background-color: var(--primary-color);
+          color: white;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          cursor: move;
+      }
+
+      .search-title {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-weight: 500;
+      }
+
+      .search-logo {
+          width: 24px;
+          height: 24px;
+          object-fit: contain;
+      }
+
+      .search-controls {
+          display: flex;
+          gap: 8px;
+      }
+
+      .search-controls button {
+          background: none;
+          border: none;
+          color: white;
+          cursor: pointer;
+          width: 24px;
+          height: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 4px;
+          transition: background-color 0.2s;
+      }
+
+      .search-controls button:hover {
+          background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      #search-input-area {
+          padding: 16px;
+          border-bottom: 1px solid var(--border-color);
+          display: flex;
+          gap: 8px;
+          align-items: center;
+      }
+
+      #search-input {
+          flex: 1;
+          border: 1px solid var(--border-color);
+          border-radius: 20px;
+          padding: 10px 16px;
+          resize: none;
+          max-height: 120px;
+          outline: none;
+          font-size: 14px;
+          transition: border 0.2s;
+      }
+
+      #search-input:focus {
+          border-color: var(--primary-color);
+      }
+
+      #search-button {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background-color: var(--primary-color);
+          color: white;
+          border: none;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background-color 0.2s;
+      }
+
+      #search-button:hover {
+          background-color: var(--primary-dark);
+      }
+
+      #search-button:disabled {
+          background-color: var(--border-color);
+          cursor: not-allowed;
+      }
+
+      #media-results {
+          flex: 1;
+          padding: 16px;
+          overflow-y: auto;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+      }
+
+      .results-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 8px;
+      }
+
+      .results-title {
+          font-weight: 600;
+          font-size: 16px;
+      }
+
+      .filter-buttons {
+          display: flex;
+          gap: 8px;
+      }
+
+      .filter-button {
+          padding: 4px 8px;
+          border-radius: 4px;
+          background-color: var(--search-bg);
+          border: none;
+          cursor: pointer;
+          font-size: 12px;
+          transition: background-color 0.2s;
+      }
+
+      .filter-button.active {
+          background-color: var(--primary-color);
+          color: white;
+      }
+
+      .filter-button:hover {
+          background-color: var(--border-color);
+      }
+
+      .media-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 12px;
+      }
+
+      .media-item {
+          position: relative;
+          border-radius: 8px;
+          overflow: hidden;
+          cursor: pointer;
+          aspect-ratio: 1;
+          transition: transform 0.2s;
+      }
+
+      .media-item:hover {
+          transform: scale(1.02);
+      }
+
+      .media-item img, .media-item video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+      }
+
+      .media-info {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 8px;
+          background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+          color: white;
+          font-size: 12px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+      }
+
+      .photographer {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+      }
+
+      .media-type {
+          background-color: var(--primary-color);
+          color: white;
+          padding: 2px 6px;
+          border-radius: 4px;
+          font-size: 10px;
+          font-weight: 500;
+      }
+
+      .loading-indicator {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 20px;
+      }
+
+      .loading-spinner {
+          width: 24px;
+          height: 24px;
+          border: 3px solid rgba(0, 0, 0, 0.1);
+          border-radius: 50%;
+          border-top-color: var(--primary-color);
+          animation: spin 1s ease-in-out infinite;
+      }
+
+      @keyframes spin {
+          to { transform: rotate(360deg); }
+      }
+
+      .error-message {
+          color: var(--error-color);
+          text-align: center;
+          padding: 20px;
+          font-size: 14px;
+      }
+
+      .empty-state {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+          text-align: center;
+          padding: 20px;
+          color: var(--text-color);
+          opacity: 0.7;
+      }
+
+      .empty-icon {
+          font-size: 48px;
+          margin-bottom: 16px;
+          color: var(--primary-color);
+      }
+
+      .empty-text {
+          font-size: 14px;
+          margin-bottom: 8px;
+      }
+
+      #media-search-footer {
+          padding: 8px 16px;
+          font-size: 12px;
+          color: #5f6368;
+          text-align: center;
+          border-top: 1px solid var(--border-color);
+      }
+
+      .powered-by {
+          opacity: 0.7;
+      }
+
+      #media-search-toggle {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          background-color: var(--primary-color);
+          color: white;
+          border: none;
+          cursor: pointer;
+          box-shadow: 0 4px 12px var(--card-shadow);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 999998;
+          transition: transform 0.3s ease;
+      }
+
+      #media-search-toggle:hover {
+          transform: scale(1.05);
+      }
+
+      #media-search-toggle.hidden {
+          display: none;
+      }
+
+      /* Fullscreen handling */
+      :fullscreen #media-search-container,
+      :-webkit-full-screen #media-search-container,
+      :-moz-full-screen #media-search-container,
+      :-ms-fullscreen #media-search-container {
+          z-index: 2147483647;
+      }
+
+      :fullscreen #media-search-toggle,
+      :-webkit-full-screen #media-search-toggle,
+      :-moz-full-screen #media-search-toggle,
+      :-ms-fullscreen #media-search-toggle {
+          z-index: 2147483646;
+      }
+
+      /* Media modal */
+      .media-modal {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(0, 0, 0, 0.9);
+          z-index: 2147483647;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 20px;
+      }
+
+      .modal-content {
+          max-width: 90%;
+          max-height: 80%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+      }
+
+      .modal-media {
+          max-width: 100%;
+          max-height: calc(80vh - 60px);
+          object-fit: contain;
+          border-radius: 8px;
+      }
+
+      .modal-info {
+          margin-top: 16px;
+          color: white;
+          text-align: center;
+          max-width: 600px;
+      }
+
+      .modal-close {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          background: none;
+          border: none;
+          color: white;
+          font-size: 24px;
+          cursor: pointer;
+      }
+
+      .modal-download {
+          margin-top: 16px;
+          padding: 8px 16px;
+          background-color: var(--primary-color);
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          text-decoration: none;
+          font-size: 14px;
+      }
+
+      .modal-download:hover {
+          background-color: var(--primary-dark);
+      }
+    </style>
+</head>
+<body>
+    <div id="media-search-container">
+        <div id="media-search-header">
+            <div class="search-title">
+                <img src="icon.jpg" style = "border-radius: 50%;" alt="Pexels Logo" class="search-logo">
+                <span>Roy Media Search</span>
+            </div>
+            <div class="search-controls">
+                <button id="minimize-search"><i class="fas fa-minus"></i></button>
+                <button id="close-search"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div id="search-input-area">
+            <input type="text" id="search-input" placeholder="Search for photos and videos...">
+            <button id="search-button"><i class="fas fa-search"></i></button>
+        </div>
+        <div id="media-results">
+            <div class="empty-state">
+                <i class="fas fa-camera empty-icon"></i>
+                <div class="empty-text">Search for photos and videos</div>
+                <div class="empty-subtext">Try "nature", "people", or anything else</div>
+            </div>
+        </div>
+        <div id="media-search-footer">
+            <span class="powered-by">Powered by Roy API</span>
+        </div>
+    </div>
+    <button id="media-search-toggle" class="hidden">
+        <img src="icon.jpg" style = "border-radius: 50%; width: 24px; height: 24px;" alt="Pexels Logo">
+    </button>
+
+    <script>
+      // Configuration
+      const PEXELS_API_KEY = 'LH59shPdj1xO0lolnHPsClH23qsnHE4NjkCFBhKEXvR0CbqwkrXbqBnw'; // Your Pexels API key
+      
+      // DOM elements
+      const searchContainer = document.getElementById('media-search-container');
+      const mediaResults = document.getElementById('media-results');
+      const searchInput = document.getElementById('search-input');
+      const searchButton = document.getElementById('search-button');
+      const minimizeButton = document.getElementById('minimize-search');
+      const closeButton = document.getElementById('close-search');
+      const searchToggle = document.getElementById('media-search-toggle');
+
+      // State
+      let isMinimized = false;
+      let isDragging = false;
+      let offsetX, offsetY;
+      let currentSearch = '';
+      let currentPage = 1;
+      let currentMediaType = 'photos'; // 'photos' or 'videos'
+      let isLoading = false;
+      let hasMoreResults = true;
+
+      // Initialize search
+      function initSearch() {
+          setupEventListeners();
+      }
+
+      // Setup event listeners
+      function setupEventListeners() {
+          // Search on button click or Enter key
+          searchButton.addEventListener('click', performSearch);
+          searchInput.addEventListener('keydown', (e) => {
+              if (e.key === 'Enter' && !isLoading) {
+                  performSearch();
+              }
+          });
+
+          // Minimize/maximize search
+          minimizeButton.addEventListener('click', toggleMinimize);
+          closeButton.addEventListener('click', () => {
+              searchContainer.style.display = 'none';
+              searchToggle.classList.remove('hidden');
+          });
+
+          // Toggle search visibility
+          searchToggle.addEventListener('click', () => {
+              searchContainer.style.display = 'flex';
+              searchToggle.classList.add('hidden');
+              if (isMinimized) {
+                  toggleMinimize();
+              }
+          });
+
+          // Drag functionality
+          const header = document.getElementById('media-search-header');
+          header.addEventListener('mousedown', startDrag);
+          document.addEventListener('mousemove', drag);
+          document.addEventListener('mouseup', endDrag);
+
+          // Infinite scroll
+          mediaResults.addEventListener('scroll', handleScroll);
+      }
+
+      // Perform search
+      async function performSearch() {
+          const query = searchInput.value.trim();
+          if (!query || isLoading) return;
+
+          currentSearch = query;
+          currentPage = 1;
+          hasMoreResults = true;
+          
+          isLoading = true;
+          searchButton.disabled = true;
+          
+          // Show loading state
+          mediaResults.innerHTML = `
+              <div class="loading-indicator">
+                  <div class="loading-spinner"></div>
+              </div>
+          `;
+
+          try {
+              const results = await fetchMedia(query, currentPage, currentMediaType);
+              displayResults(results);
+          } catch (error) {
+              console.error('Error searching media:', error);
+              showError("Failed to load media. Please try again.");
+          } finally {
+              isLoading = false;
+              searchButton.disabled = false;
+          }
+      }
+
+      // Fetch media from Pexels API
+      async function fetchMedia(query, page = 1, type = 'photos') {
+          let url;
+          if (type === 'photos') {
+              url = `https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}&page=${page}&per_page=20`;
+          } else {
+              url = `https://api.pexels.com/videos/search?query=${encodeURIComponent(query)}&page=${page}&per_page=20`;
+          }
+
+          const response = await fetch(url, {
+              headers: {
+                  'Authorization': PEXELS_API_KEY
+              }
+          });
+
+          if (!response.ok) {
+              throw new Error(`API request failed with status ${response.status}`);
+          }
+
+          return await response.json();
+      }
+
+      // Display results
+      function displayResults(data) {
+          if (!data || (currentMediaType === 'photos' && (!data.photos || data.photos.length === 0)) || 
+              (currentMediaType === 'videos' && (!data.videos || data.videos.length === 0))) {
+              mediaResults.innerHTML = `
+                  <div class="error-message">
+                      No results found for "${currentSearch}"
+                  </div>
+              `;
+              hasMoreResults = false;
+              return;
+          }
+
+          const items = currentMediaType === 'photos' ? data.photos : data.videos;
+          
+          // Check if we've reached the end of results
+          if (items.length < 20) {
+              hasMoreResults = false;
+          }
+
+          let resultsHtml = `
+              <div class="results-header">
+                  <div class="results-title">Results for "${currentSearch}"</div>
+                  <div class="filter-buttons">
+                      <button class="filter-button ${currentMediaType === 'photos' ? 'active' : ''}" data-type="photos">Photos</button>
+                      <button class="filter-button ${currentMediaType === 'videos' ? 'active' : ''}" data-type="videos">Videos</button>
+                  </div>
+              </div>
+              <div class="media-grid">
+          `;
+
+          items.forEach(item => {
+              if (currentMediaType === 'photos') {
+                  resultsHtml += `
+                      <div class="media-item" data-id="${item.id}" data-type="photo">
+                          <img src="${item.src.medium}" alt="${item.photographer} - ${item.alt || 'Pexels photo'}">
+                          <div class="media-info">
+                              <div class="photographer">
+                                  <i class="fas fa-user"></i>
+                                  <span>${item.photographer}</span>
+                              </div>
+                              <div class="media-type">Photo</div>
+                          </div>
+                      </div>
+                  `;
+              } else {
+                  const videoThumbnail = item.video_files.find(file => file.quality === 'sd' && file.file_type === 'video/mp4');
+                  resultsHtml += `
+                      <div class="media-item" data-id="${item.id}" data-type="video">
+                          <video muted loop>
+                              <source src="${videoThumbnail.link}" type="video/mp4">
+                          </video>
+                          <div class="media-info">
+                              <div class="photographer">
+                                  <i class="fas fa-user"></i>
+                                  <span>${item.user.name}</span>
+                              </div>
+                              <div class="media-type">Video</div>
+                          </div>
+                      </div>
+                  `;
+              }
+          });
+
+          resultsHtml += `</div>`;
+
+          mediaResults.innerHTML = resultsHtml;
+
+          // Setup media item click handlers
+          document.querySelectorAll('.media-item').forEach(item => {
+              item.addEventListener('click', () => openMediaModal(
+                  item.dataset.id,
+                  item.dataset.type,
+                  item.querySelector('.photographer span').textContent,
+                  currentMediaType === 'videos' ? item.querySelector('video source').src : null
+              ));
+          });
+
+          // Setup filter button handlers
+          document.querySelectorAll('.filter-button').forEach(button => {
+              button.addEventListener('click', () => {
+                  if (button.dataset.type !== currentMediaType) {
+                      currentMediaType = button.dataset.type;
+                      currentPage = 1;
+                      performSearch();
+                  }
+              });
+          });
+
+          // Play videos on hover
+          if (currentMediaType === 'videos') {
+              document.querySelectorAll('.media-item video').forEach(video => {
+                  video.addEventListener('mouseenter', () => video.play());
+                  video.addEventListener('mouseleave', () => {
+                      video.pause();
+                      video.currentTime = 0;
+                  });
+              });
+          }
+      }
+
+      // Handle infinite scroll
+      async function handleScroll() {
+          if (isLoading || !hasMoreResults) return;
+          
+          const { scrollTop, scrollHeight, clientHeight } = mediaResults;
+          if (scrollTop + clientHeight >= scrollHeight - 100) {
+              // Load more results
+              isLoading = true;
+              currentPage++;
+              
+              try {
+                  const results = await fetchMedia(currentSearch, currentPage, currentMediaType);
+                  appendResults(results);
+              } catch (error) {
+                  console.error('Error loading more media:', error);
+                  currentPage--; // Revert page increment on error
+              } finally {
+                  isLoading = false;
+              }
+          }
+      }
+
+      // Append additional results
+      function appendResults(data) {
+          const items = currentMediaType === 'photos' ? data.photos : data.videos;
+          
+          if (!items || items.length === 0) {
+              hasMoreResults = false;
+              return;
+          }
+
+          // Check if we've reached the end of results
+          if (items.length < 20) {
+              hasMoreResults = false;
+          }
+
+          const mediaGrid = document.querySelector('.media-grid');
+          if (!mediaGrid) return;
+
+          items.forEach(item => {
+              const mediaItem = document.createElement('div');
+              mediaItem.className = 'media-item';
+              mediaItem.dataset.id = item.id;
+              mediaItem.dataset.type = currentMediaType === 'photos' ? 'photo' : 'video';
+              
+              if (currentMediaType === 'photos') {
+                  mediaItem.innerHTML = `
+                      <img src="${item.src.medium}" alt="${item.photographer} - ${item.alt || 'Pexels photo'}">
+                      <div class="media-info">
+                          <div class="photographer">
+                              <i class="fas fa-user"></i>
+                              <span>${item.photographer}</span>
+                          </div>
+                          <div class="media-type">Photo</div>
+                      </div>
+                  `;
+              } else {
+                  const videoThumbnail = item.video_files.find(file => file.quality === 'sd' && file.file_type === 'video/mp4');
+                  mediaItem.innerHTML = `
+                      <video muted loop>
+                          <source src="${videoThumbnail.link}" type="video/mp4">
+                      </video>
+                      <div class="media-info">
+                          <div class="photographer">
+                              <i class="fas fa-user"></i>
+                              <span>${item.user.name}</span>
+                          </div>
+                          <div class="media-type">Video</div>
+                      </div>
+                  `;
+              }
+              
+              mediaItem.addEventListener('click', () => openMediaModal(
+                  item.id,
+                  currentMediaType === 'photos' ? 'photo' : 'video',
+                  currentMediaType === 'photos' ? item.photographer : item.user.name,
+                  currentMediaType === 'videos' ? videoThumbnail.link : null
+              ));
+              
+              mediaGrid.appendChild(mediaItem);
+          });
+
+          // Play videos on hover for new items
+          if (currentMediaType === 'videos') {
+              document.querySelectorAll('.media-item video').forEach(video => {
+                  video.addEventListener('mouseenter', () => video.play());
+                  video.addEventListener('mouseleave', () => {
+                      video.pause();
+                      video.currentTime = 0;
+                  });
+              });
+          }
+      }
+
+      // Open media modal
+      function openMediaModal(id, type, photographer, videoSrc = null) {
+          const modal = document.createElement('div');
+          modal.className = 'media-modal';
+          
+          let mediaContent = '';
+          let downloadUrl = '';
+          
+          if (type === 'photo') {
+              // For photos, we'll fetch the original size
+              mediaContent = `<img src="https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="modal-media">`;
+              downloadUrl = `https://www.pexels.com/photo/${id}/download/`;
+          } else {
+              // For videos, we'll use the provided thumbnail or try to find HD version
+              mediaContent = `
+                  <video controls autoplay class="modal-media">
+                      <source src="${videoSrc.replace('sd', 'hd') || videoSrc}" type="video/mp4">
+                  </video>
+              `;
+              downloadUrl = `https://www.pexels.com/video/${id}/download/`;
+          }
+          
+          modal.innerHTML = `
+              <button class="modal-close"><i class="fas fa-times"></i></button>
+              <div class="modal-content">
+                  ${mediaContent}
+                  <div class="modal-info">
+                      <div>Photographer: ${photographer}</div>
+                  </div>
+              </div>
+          `;
+          
+          document.body.appendChild(modal);
+          
+          // Close modal
+          modal.querySelector('.modal-close').addEventListener('click', () => {
+              document.body.removeChild(modal);
+          });
+          
+          // Close modal on ESC key
+          document.addEventListener('keydown', function escClose(e) {
+              if (e.key === 'Escape') {
+                  document.body.removeChild(modal);
+                  document.removeEventListener('keydown', escClose);
+              }
+          });
+      }
+
+      // Show error message
+      function showError(message) {
+          mediaResults.innerHTML = `
+              <div class="error-message">
+                  ${message}
+              </div>
+          `;
+      }
+
+      // Toggle minimize/maximize
+      function toggleMinimize() {
+          isMinimized = !isMinimized;
+          searchContainer.classList.toggle('minimized', isMinimized);
+          minimizeButton.innerHTML = isMinimized ? '<i class="fas fa-plus"></i>' : '<i class="fas fa-minus"></i>';
+      }
+
+      // Drag and drop functions
+      function startDrag(e) {
+          if (e.target.closest('.search-controls')) return;
+          
+          isDragging = true;
+          const rect = searchContainer.getBoundingClientRect();
+          offsetX = e.clientX - rect.left;
+          offsetY = e.clientY - rect.top;
+          searchContainer.style.cursor = 'grabbing';
+      }
+
+      function drag(e) {
+          if (!isDragging) return;
+          
+          e.preventDefault();
+          searchContainer.style.left = `${e.clientX - offsetX}px`;
+          searchContainer.style.top = `${e.clientY - offsetY}px`;
+          searchContainer.style.right = 'auto';
+          searchContainer.style.bottom = 'auto';
+      }
+
+      function endDrag() {
+          isDragging = false;
+          searchContainer.style.cursor = '';
+      }
+
+      // Initialize search when page loads
+      document.addEventListener('DOMContentLoaded', initSearch);
+    </script>
+</body>
+</html>
+
+
     <!-- blog page -->
     <section class = "blog container">
       <div class = "title">
