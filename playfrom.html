@@ -1919,22 +1919,200 @@
         </div>
       </div>
 
-      <div class = "footer-text">
-        <p class = "text">Copyright &copy; 2024 All rights reserved | Awesome Coding Design Dwi Bakti N Dev</p>
-        <div class="image-container">
-          <img src="Di Lindungi Hak Cipta/a.png" alt="Colaboration" class="hak-cipta">
-          <img src="Di Lindungi Hak Cipta/b.png" alt="Colaboration" class="hak-cipta">
-          <img src="Di Lindungi Hak Cipta/c.png" alt="Colaboration" class="hak-cipta">
-          <img src="Di Lindungi Hak Cipta/d.png" alt="Colaboration" class="hak-cipta">
-          <img src="Di Lindungi Hak Cipta/e.png" alt="Colaboration" class="hak-cipta">
+  <div class="footer-container">
+  <div class="footer-text">
+    <p class="copyright-text">Copyright &copy; 2024 All rights reserved | Awesome Coding Design Dwi Bakti N Dev</p>
+    <div class="image-container">
+      <div class="logo-wrapper">
+        <img src="Di Lindungi Hak Cipta/a.png" alt="Collaboration" class="hak-cipta" loading="lazy">
+        <div class="logo-tooltip">Contribution Licensi</div>
       </div>
+      <div class="logo-wrapper">
+        <img src="Di Lindungi Hak Cipta/b.png" alt="Collaboration" class="hak-cipta" loading="lazy">
+        <div class="logo-tooltip">Contribution Licensi</div>
       </div>
+      <div class="logo-wrapper">
+        <img src="Di Lindungi Hak Cipta/c.png" alt="Collaboration" class="hak-cipta" loading="lazy">
+        <div class="logo-tooltip">Contribution Licensi</div>
+      </div>
+      <div class="logo-wrapper">
+        <img src="Di Lindungi Hak Cipta/d.png" alt="Collaboration" class="hak-cipta" loading="lazy">
+        <div class="logo-tooltip">Contribution Licensi</div>
+      </div>
+      <div class="logo-wrapper">
+        <img src="Di Lindungi Hak Cipta/e.png" alt="Collaboration" class="hak-cipta" loading="lazy">
+        <div class="logo-tooltip">Contribution Licensi</div>
+      </div>
+      <div class="logo-wrapper">
+        <img src="futscore/Futscore.png" alt="Futscore" class="hak-cipta" loading="lazy">
+        <div class="logo-tooltip">Colaboration Futscore</div>
+      </div>
+      <div class="logo-wrapper">
+        <img src="futscore/forssekot.png" alt="Forssekot" class="hak-cipta" loading="lazy">
+        <div class="logo-tooltip">Colaboration Forssekot</div>
+      </div>
+      <div class="logo-wrapper">
+        <img src="futscore/google.png" alt="Forssekot" class="hak-cipta" loading="lazy">
+        <div class="logo-tooltip">Join Google IO</div>
+      </div>
+      <div class="logo-wrapper">
+        <img src="futscore/chatgpt.png" alt="Forssekot" class="hak-cipta" loading="lazy">
+        <div class="logo-tooltip">Contribution Chatgpt</div>
+      </div>
+      <div class="logo-wrapper">
+        <img src="futscore/pssi.jpg" alt="Forssekot" class="hak-cipta" loading="lazy">
+        <div class="logo-tooltip">Colaboration PSSI</div>
+      </div>
+      <div class="logo-wrapper">
+        <img src="futscore/telkomsel.svg" alt="Forssekot" class="hak-cipta" loading="lazy">
+        <div class="logo-tooltip">Colaboration Telkomsel</div>
+      </div>
+      <div class="logo-wrapper">
+        <img src="futscore/Bin.png" alt="Forssekot" class="hak-cipta" loading="lazy">
+        <div class="logo-tooltip">Colaboration Badan Inteljen Negara</div>
+      </div>
+      <div class="logo-wrapper">
+        <img src="futscore/pygame.png" alt="Forssekot" class="hak-cipta" loading="lazy">
+        <div class="logo-tooltip">Contribution Pygame</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .footer-container {
+    background-color: none;
+    padding: 2rem 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .footer-text {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  .copyright-text {
+    color: #ecf0f1;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+  }
+
+  .copyright-text:hover {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+
+  .image-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .logo-wrapper {
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .hak-cipta {
+    height: 40px;
+    width: auto;
+    filter: grayscale(30%) brightness(1.1);
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  .logo-wrapper:hover .hak-cipta {
+    filter: grayscale(0%) brightness(1.2);
+    transform: scale(1.15) translateY(-5px);
+  }
+
+  .logo-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    pointer-events: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .logo-wrapper:hover .logo-tooltip {
+    opacity: 1;
+    visibility: visible;
+    bottom: calc(100% + 10px);
+  }
+
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .image-container {
+      gap: 1rem;
+    }
+    
+    .hak-cipta {
+      height: 30px;
+    }
+    
+    .copyright-text {
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .image-container {
+      gap: 0.7rem;
+    }
+    
+    .hak-cipta {
+      height: 25px;
+    }
+    
+    .copyright-text {
+      font-size: 0.7rem;
+    }
+  }
+
+  /* Animation for logo entrance */
+  @keyframes logoEntrance {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .logo-wrapper {
+    animation: logoEntrance 0.5s ease forwards;
+    opacity: 0;
+  }
+
+  .logo-wrapper:nth-child(1) { animation-delay: 0.1s; }
+  .logo-wrapper:nth-child(2) { animation-delay: 0.2s; }
+  .logo-wrapper:nth-child(3) { animation-delay: 0.3s; }
+  .logo-wrapper:nth-child(4) { animation-delay: 0.4s; }
+  .logo-wrapper:nth-child(5) { animation-delay: 0.5s; }
+  .logo-wrapper:nth-child(6) { animation-delay: 0.6s; }
+  .logo-wrapper:nth-child(7) { animation-delay: 0.7s; }
+</style>
     </footer>
-    <!-- end of footer -->
-
-
-
-    <!-- custom js file -->
     <script src="js/script.js"></script>
   </body>
 </html>
